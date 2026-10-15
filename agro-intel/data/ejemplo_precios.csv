@@ -1,0 +1,8 @@
+fecha,producto,categoria,mercado,precio_eur_kg,fuente
+# DATOS FICTICIOS para probar el programa. Sustituyelos por datos reales.
+2025-10-06,aceite,virgen_extra,espania_origen,"4,10",ejemplo
+2025-10-13,aceite,virgen_extra,espania_origen,"4,05",ejemplo
+2025-10-20,aceite,virgen_extra,espania_origen,3.98,ejemplo
+2025-10-27,aceite,virgen_extra,espania_origen,4.02,ejemplo
+2025-10-27,aceite,lampante,espania_origen,3.40,ejemplo
+2025-11-03,aceite,virgen_extra,espania_origen,precio_roto,ejemplo
