@@ -9,6 +9,7 @@ namespace agro {
 // Envoltorio RAII sobre SQLite: abre en el constructor, cierra en el destructor.
 class Database {
 public:
+
     explicit Database(const std::string& path);
     ~Database();
 
@@ -24,6 +25,7 @@ public:
     int countPrices() const;
 
 private:
+
     void exec(const std::string& sql);
     void createSchema();
 

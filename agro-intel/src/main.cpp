@@ -4,11 +4,13 @@
 #include <iostream>
 
 namespace {
+
 void usage() {
     std::cout << "Uso:\n"
                  "  agro-intel import <fichero.csv>\n"
                  "  agro-intel show <producto> <categoria> [n]\n";
 }
+
 } // namespace
 
 int main(int argc, char** argv) {
