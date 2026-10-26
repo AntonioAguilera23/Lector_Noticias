@@ -19,9 +19,7 @@ public:
     // Devuelve cuántas filas nuevas se insertaron (los duplicados se ignoran).
     int insertPrices(const std::vector<PricePoint>& prices);
 
-    std::vector<PricePoint> latestPrices(const std::string& product,
-                                         const std::string& category,
-                                         int limit) const;
+    std::vector<PricePoint> latestPrices(const std::string& product, const std::string& category, int limit) const;
     int countPrices() const;
 
 private:

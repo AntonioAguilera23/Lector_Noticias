@@ -8,6 +8,7 @@ namespace agro {
 namespace {
     
 std::vector<std::string> splitCsvLine(const std::string& line) {
+
     std::vector<std::string> fields;
     std::string cur;
     bool inQuotes = false;
@@ -18,6 +19,7 @@ std::vector<std::string> splitCsvLine(const std::string& line) {
     }
     fields.push_back(cur);
     return fields;
+    
 }
 
 bool looksLikeIsoDate(const std::string& s) {
