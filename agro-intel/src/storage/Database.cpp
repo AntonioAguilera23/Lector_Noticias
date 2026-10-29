@@ -144,4 +144,37 @@ int Database::countPrices() const {
     return sqlite3_column_int(st.s, 0);
 }
 
+std::vector<PricePoint> Database::pricesByDateRange(const std::string& product,
+                                                    const std::string& startDate,
+                                                    const std::string& endDate) const {
+    Stmt st;
+    const char* sql =
+        "SELECT date, product, category, market, price_eur_kg, source "
+        "FROM prices WHERE product = ? AND date >= ? AND date <= ? "
+        "ORDER BY date ASC"; // Orden cronológico para análisis
+        
+    if (sqlite3_prepare_v2(db_, sql, -1, &st.s, nullptr) != SQLITE_OK) {
+        throw std::runtime_error(
+            std::string("No se pudo preparar pricesByDateRange: ") + sqlite3_errmsg(db_));
+    }
+    
+    sqlite3_bind_text(st.s, 1, product.c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(st.s, 2, startDate.c_str(), -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(st.s, 3, endDate.c_str(), -1, SQLITE_TRANSIENT);
+
+    std::vector<PricePoint> out;
+    int rc = SQLITE_OK;
+    while ((rc = sqlite3_step(st.s)) == SQLITE_ROW) {
+        // Reutilizamos la función auxiliar col() del namespace anónimo
+        out.push_back({col(st.s, 0), col(st.s, 1), col(st.s, 2), col(st.s, 3),
+                       sqlite3_column_double(st.s, 4), col(st.s, 5)});
+    }
+    
+    if (rc != SQLITE_DONE) {
+        throw std::runtime_error(
+            std::string("Error al consultar pricesByDateRange: ") + sqlite3_errmsg(db_));
+    }
+    return out;
+}
+
 } // namespace agro
