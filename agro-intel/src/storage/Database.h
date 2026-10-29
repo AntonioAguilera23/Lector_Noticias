@@ -22,6 +22,10 @@ public:
     std::vector<PricePoint> latestPrices(const std::string& product, const std::string& category, int limit) const;
     int countPrices() const;
 
+    std::vector<PricePoint> pricesByDateRange(const std::string& product,
+                                              const std::string& start_date,
+                                              const std::string& end_date) const;
+
 private:
 
     void exec(const std::string& sql);

@@ -1,5 +1,6 @@
 #pragma once
 #include "agro/PricePoint.h"
+#include "agro/PriceSource.h"
 #include <string>
 #include <vector>
 
